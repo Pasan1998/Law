@@ -477,6 +477,12 @@ h6,
     background-size: cover;
 }
 
+..bg-primary {
+    background-color: #121787 !important;
+}
+
+
+
 .link-animated a {
     transition: .5s;
 }

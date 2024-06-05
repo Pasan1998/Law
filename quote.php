@@ -14,7 +14,7 @@ include 'phpmail/mail.php';
         $client_mobile = cleanInput($mobile);
         $client_email = cleanInput($email);
         $client_message = cleanInput($message);
-        $client_serviceid = cleanInput($serviceid);
+      
         $messages = array();
 
         if (empty($client_name)) {
@@ -29,37 +29,20 @@ include 'phpmail/mail.php';
         if (empty($client_message)) {
             $messages['client_message'] = "The Message should not be empty..!";
         }
-        if (empty($client_serviceid)) {
-            $messages['client_serviceid'] = "The Service should  be selected..!";
-        }
+        
         
         if (empty($messages)) {
 
             $db = dbConn();              
             $adddate = date('Y-m-d');
-            $sql = "INSERT INTO inquiries(ClientName,ClientMobile, ClientEmail, ServiceID, ClientMessage, 
+            $sql = "INSERT INTO inquiries(ClientName,ClientMobile, ClientEmail, ClientMessage, 
             Loggeddate, InquiresState) VALUES ('$client_name','$client_mobile]',
-            '$client_email','$client_serviceid','$client_message','$adddate',1)";
+            '$client_email','$client_message','$adddate',1)";
 
             $results = $db->query($sql);
 
 
-            if (!empty($client_serviceid)){
-
-                $sqlservice = "SELECT * FROM services where ServiceID = '$client_serviceid' ";
-            $db = dbConn();
-            $resultservice = $db->query($sqlservice);
-
-           if ($resultservice->num_rows > 0) {
-            $rowservice = $resultservice->fetch_assoc();
-            $selectedService = $rowservice['Description'];
-
-           }else{
-            $selectedService = "Did not Mentioned the Practice area";
-           }
-
-
-        }
+            
 
             // sending email start
             $cEmail=$client_email;
@@ -129,9 +112,7 @@ include 'phpmail/mail.php';
                                              <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
                                                 Client Mobile: '. $client_mobile.'
                                              </p>
-                                             <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
-                                                 Topic: '.$selectedService.'
-                                          </p>
+                                             
                                           <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
                                                 Message:'.$client_message.'
                                              </p>
@@ -169,22 +150,7 @@ include 'phpmail/mail.php';
 
         if (empty($messages)) {
 
-            if (!empty($client_serviceid)){
-
-                $sqlservice = "SELECT * FROM services where ServiceID = '$client_serviceid' ";
-            $db = dbConn();
-            $resultservice = $db->query($sqlservice);
-
-           if ($resultservice->num_rows > 0) {
-            $rowservice = $resultservice->fetch_assoc();
-            $selectedService = $rowservice['Description'];
-
-           }else{
-            $selectedService = "Did not Mentioned the Practice area";
-           }
-
-
-        }
+           
 
             $sqlsendemails = "SELECT * FROM notfications";
             $db = dbConn();
@@ -201,7 +167,7 @@ include 'phpmail/mail.php';
             
             $to = $rowEmails['EmailAddress'];
             $toname =  $cFirstName . $cLastName ;
-            $subject = "You have Recived New Inquiry" ." ". $selectedService;
+            $subject = "You have Recived New Inquiry";
             $body = '<!doctype html>
     <html lang="en-US">
     
@@ -261,9 +227,7 @@ include 'phpmail/mail.php';
                                             <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
                                                Client Mobile: '. $client_mobile.'
                                             </p>
-                                            <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
-                                                Topic: '.$selectedService.'
-                                         </p>
+                                            
                                          <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
                                                Message:'.$client_message.'
                                             </p>
@@ -347,12 +311,12 @@ include 'phpmail/mail.php';
             <div class="row g-5">
                 <div class="col-lg-7">
                     <div class="section-title position-relative pb-3 mb-5">
-                        <h5 class="fw-bold text-primary text-uppercase">Request A Quote</h5>
-                        <h1 class="mb-0">Need A Free Quote? Please Feel Free to Contact Us</h1>
+                        <h5 class="fw-bold text-primary text-uppercase">Request A Free Opinion</h5>
+                        <h1 class="mb-0">Need a free Legal Opinion? Please Feel Free to Contact Us </h1>
                     </div>
                     <div class="row gx-3">
                         <div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
-                            <h5 class="mb-4"><i class="fa fa-reply text-primary me-3"></i>Reply within 24 hours</h5>
+                            <h5 class="mb-4"><i class="fa fa-reply text-primary me-3"></i>You will receive our response immediately or within 12 hours </h5>
                         </div>
                         <div class="col-sm-6 wow zoomIn" data-wow-delay="0.4s">
                             <h5 class="mb-4"><i class="fa fa-phone-alt text-primary me-3"></i>24 hrs telephone support</h5>
@@ -385,36 +349,13 @@ include 'phpmail/mail.php';
                                     <input type="email" class="form-control bg-light border-0" placeholder="Your Email" name="email" value="<?= @$email?>" style="height: 55px;">
                                     <label class="text-danger">  <?= @$messages['client_email']; ?></label>
                                 </div>
-                                <div class="col-12">
-                                    <select class="form-select bg-light border-0" style="height: 55px;" name="serviceid">
-                                    <?php
-                                        $sqlServices= "SELECT * FROM services ";
-                                        $db = dbConn();
-                                        $resultServices = $db->query($sqlServices);
-                ?>
-                                        <option >Select A Service</option>
-                                        
-                                        <?php
-                                        if ($resultServices->num_rows > 0) {
-
-                                            while ($rowServices = $resultServices->fetch_assoc()) {
-                                                ?>
-                                        <option value="<?= $rowServices['ServiceID'] ?>" <?php
-                                        if (@$serviceid == $rowServices['ServiceID']) {
-                                            echo "selected";
-                                                }
-                ?>  ><?= ucfirst($rowServices['Description']) ?></option>
-                <?php }} ?>
-                                       
-                                    </select>
-                                    <label class="text-danger">  <?= @$messages['client_serviceid']; ?></label>
-                                </div>
+                                
                                 <div class="col-12">
                                     <textarea class="form-control bg-light border-0" rows="3" name="message" placeholder="Message"></textarea>
                                     <label class="text-danger">  <?= @$messages['client_message']; ?></label>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn btn-dark w-100 py-3" type="submit">Request A Quote</button>
+                                    <button class="btn btn-dark w-100 py-3" type="submit">Request Free Advice</button>
                                 </div>
                             </div>
                         </form>
