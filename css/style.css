@@ -477,7 +477,7 @@ h6,
     background-size: cover;
 }
 
-..bg-primary {
+.bg-primary {
     background-color: #121787 !important;
 }
 
@@ -494,5 +494,81 @@ h6,
 @media (min-width: 767.98px) {
     .footer-about {
         margin-bottom: -75px;
+    }
+}
+
+/* Style for mobile view */
+@media (max-width: 992px) {
+    .navbar-dark .navbar-nav .nav-link {
+        color: #ffffff !important; /* Forces white color on mobile links */
+    }
+
+    /* Ensure dropdown links are also white */
+    .navbar-dark .navbar-nav .dropdown-menu .dropdown-item {
+        color: #ffffff !important;
+    }
+}
+
+
+/* Center align the navbar brand and toggler on mobile */
+@media (max-width: 992px) {
+    .navbar .d-flex {
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Make links white on mobile view */
+    .navbar-dark .navbar-nav .nav-link {
+        color: #ffffff !important;
+    }
+
+    .navbar-dark .navbar-nav .dropdown-menu .dropdown-item {
+        color: #ffffff !important;
+    }
+
+    /* Adjust text alignment if needed */
+    .navbar-brand h1 {
+        text-align: center;
+    }
+}
+
+/* Style adjustments for mobile view */
+@media (max-width: 992px) {
+    /* Smaller font size for nav links */
+    .navbar-nav .nav-link {
+        font-size: 0.9rem; /* Adjust font size as desired */
+        color: #ffffff !important; /* Make links white on mobile */
+    }
+
+    /* Make dropdown links white */
+    .navbar-nav .dropdown-menu .dropdown-item {
+        color: #ffffff !important;
+        font-size: 0.9rem; /* Adjust font size as desired */
+    }
+
+    /* White color for the search icon */
+    .btn .fa-search {
+        color: #ffffff !important;
+    }
+}
+
+
+/* Ensure navbar-brand text is white on mobile view */
+@media (max-width: 992px) {
+    .navbar-brand h1 {
+        color: #ffffff !important; /* Set the text color to white */
+    }
+}
+
+
+@media (max-width: 767px) { /* Adjust the width as needed for your mobile view */
+    .navbar-toggler .fa-bars {
+        color: white;
+    }
+}
+
+@media (max-width: 767px) {
+    .service-item .btn {
+        width: 100%;
     }
 }

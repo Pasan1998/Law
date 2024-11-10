@@ -1,4 +1,3 @@
 <?php
-define("SYSTEM_PATH", "http://localhost/law/")
-        
+define("SYSTEM_PATH", "http://localhost/laws/");        
     ?>

@@ -329,7 +329,7 @@ include 'phpmail/mail.php';
                         </div>
                         <div class="ps-4">
                             <h5 class="mb-2">Call to ask any question</h5>
-                            <h4 class="text-primary mb-0">+012 345 6789</h4>
+                            <h4 class="text-primary mb-0">+94 77 599 0485</h4>
                         </div>
                     </div>
                 </div>
@@ -355,7 +355,7 @@ include 'phpmail/mail.php';
                                     <label class="text-danger">  <?= @$messages['client_message']; ?></label>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn btn-dark w-100 py-3" type="submit">Request Free Advice</button>
+                                    <button class="btn btn-dark w-100 py-3" type="submit">Request Book Free Consultation</button>
                                 </div>
                             </div>
                         </form>
@@ -368,7 +368,7 @@ include 'phpmail/mail.php';
 
 
     <!-- Vendor Start -->
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <!-- <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5 mb-5">
             <div class="bg-white">
                 <div class="owl-carousel vendor-carousel">
@@ -384,7 +384,7 @@ include 'phpmail/mail.php';
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Vendor End -->
     
 
@@ -394,10 +394,10 @@ include 'phpmail/mail.php';
             <div class="row gx-5">
                 <div class="col-lg-4 col-md-6 footer-about">
                     <div class="d-flex flex-column align-items-center justify-content-center text-center h-100 bg-primary p-4">
-                        <a href="index.html" class="navbar-brand">
+                        <a href="index.php" class="navbar-brand">
                             <h1 class="m-0 text-white"><i class="fa fa-user-tie me-2"></i>Startup</h1>
                         </a>
-                        <p class="mt-3 mb-4">Lorem diam sit erat dolor elitr et, diam lorem justo amet clita stet eos sit. Elitr dolor duo lorem, elitr clita ipsum sea. Diam amet erat lorem stet eos. Diam amet et kasd eos duo.</p>
+                        <p class="mt-3 mb-4">Welcome to Perera Seneviratne Associates, where legal expertise meets unwavering commitment. Whether you're navigating a complex family matter, seeking advice on business ventures, dealing with administrative challenges, or requiring deed work, we are here to guide you every step of the way. At Perera Seneviratne Associates, your success and peace of mind are our top priorities.</p>
                         <form action="">
                             <div class="input-group">
                                 <input type="text" class="form-control border-white p-3" placeholder="Your Email">
@@ -414,7 +414,7 @@ include 'phpmail/mail.php';
                             </div>
                             <div class="d-flex mb-2">
                                 <i class="bi bi-geo-alt text-primary me-2"></i>
-                                <p class="mb-0">123 Street, New York, USA</p>
+                                <p class="mb-0">364/1 Pannipitiya Rd, Thalawathugoda</p>
                             </div>
                             <div class="d-flex mb-2">
                                 <i class="bi bi-envelope-open text-primary me-2"></i>
@@ -422,7 +422,7 @@ include 'phpmail/mail.php';
                             </div>
                             <div class="d-flex mb-2">
                                 <i class="bi bi-telephone text-primary me-2"></i>
-                                <p class="mb-0">+012 345 67890</p>
+                                <p class="mb-0">+94 77 599 04850</p>
                             </div>
                             <div class="d-flex mt-4">
                                 <a class="btn btn-primary btn-square me-2" href="#"><i class="fab fa-twitter fw-normal"></i></a>

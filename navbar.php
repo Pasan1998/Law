@@ -1,84 +1,48 @@
+
 <div class="container-fluid position-relative p-0">
-    <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
-        <a href="index.html" class="navbar-brand p-0">
-            <h1 class="m-0"><img class="img-fluid" style="width: 3rem; height: 3rem; border-radius: 20px;"
-                    src="img/logo.png">Perera Seneviratne Associates</h1>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="fa fa-bars"></span>
-        </button>
+    <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0" >
+        <div class="d-flex justify-content-between align-items-center w-100">
+                <!-- Center brand on mobile and align left on larger screens -->
+
+
+                <!-- Toggler button for mobile -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+
+                <a href="index.php" class="navbar-brand mx-auto mx-lg-0 p-0">
+                    <h1 class="m-0 text-wrap text-center fs-4 fs-md-3 fs-lg-2">Perera Seneviratne Associates</h1>
+                </a>
+            </div>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
-                <a href="index.php" class="nav-item nav-link ">Home</a>
-                <a href="about.php" class="nav-item nav-link">About</a>
-                <!-- <a href="service.html" class="nav-item nav-link">Services</a> -->
+                <a href="<?= SYSTEM_PATH ?>index.php" class="nav-item nav-link ">Home</a>
+                <a href="<?= SYSTEM_PATH ?>about.php" class="nav-item nav-link">About</a>
+
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Practice Areas</a>
                     <div class="dropdown-menu m-0">
 
-                        <?php
-                        $sqlServices = "SELECT * FROM services ";
-                        $db = dbConn();
-                        $resultServices = $db->query($sqlServices);
-                        ?>
-                        <?php
-                        if ($resultServices->num_rows > 0) {
-                            $i = 1;
-                            while ($rowService = $resultServices->fetch_assoc()) {
-                                $pageNameWithoutSpaces = str_replace(' ', '', $rowService['PageName']);
-                                $lowecasePageName = strtolower($pageNameWithoutSpaces);
-                                 $text=($rowService['PageName']);
-                                $curl = curl_init();
-                                curl_setopt_array($curl, array(
-                                    CURLOPT_URL => 'https://translate.googleapis.com/translate_a/single?client=gtx&dt=t',
-                                    CURLOPT_RETURNTRANSFER => true,
-                                    CURLOPT_ENCODING => '',
-                                    CURLOPT_MAXREDIRS => 10,
-                                    CURLOPT_TIMEOUT => 0,
-                                    CURLOPT_FOLLOWLOCATION => true,
-                                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                                    CURLOPT_CUSTOMREQUEST => 'POST',
-                                    CURLOPT_POSTFIELDS => 'sl=en&tl=si&q=' . urlencode($text),
-                                    CURLOPT_HTTPHEADER => array(
-                                        'Content-Type: application/x-www-form-urlencoded'
-                                    ),
-                                )
-                                );
-                                $response = curl_exec($curl);
-                                curl_close($curl);
+                        <a href="<?= SYSTEM_PATH ?>"class="dropdown-item">Fundamental Rights </a>
+                        <a href="<?= SYSTEM_PATH ?>"class="dropdown-item">Writ   </a>
+                        <a href="<?= SYSTEM_PATH ?>"class="dropdown-item">Divorce</a>
+                        <a href="<?= SYSTEM_PATH ?>"class="dropdown-item">Testamentary   </a>
+                        <a href="<?= SYSTEM_PATH ?>"class="dropdown-item">Money Recovery </a>
+                        <a href="<?= SYSTEM_PATH ?>"class="dropdown-item">Leasing and loan related matters </a>
+                        <a href="<?= SYSTEM_PATH ?>"class="dropdown-item">Land Disputes  </a>
+                        <a href="<?= SYSTEM_PATH ?>accidentClaims.php"class="dropdown-item">Accident Claims   </a>
+                        <a href="<?= SYSTEM_PATH ?>"class="dropdown-item">Medical negligence matters   </a>
+                        <a href="<?= SYSTEM_PATH ?>"class="dropdown-item">Labour matters </a>
+                        <a href="<?= SYSTEM_PATH ?>"class="dropdown-item">Intellectual property rights   </a>
+                        <a href="<?= SYSTEM_PATH ?>"class="dropdown-item">Contracts drafting and reviewing  </a>
+                        <a href="<?= SYSTEM_PATH ?>"class="dropdown-item">Notarial Works   </a>
+                        <a href="<?= SYSTEM_PATH ?>"class="dropdown-item">Other </a>
 
-                                $sentencesArray = json_decode($response, true);
-                                $sentences = "";
-                                foreach ($sentencesArray[0] as $s) {
-                                    $sentences .= isset($s[0]) ? $s[0] : '';
-                                }
-
-                                 $sentences;
-                                ?>
-
-
-                                <a href="<?= $lowecasePageName ?>.php"
-                                    class="dropdown-item"><?= $rowService['PageName'] ." ". $sentences ?></a>
-                            <?php }
-                        } ?>
 
                     </div>
                 </div>
-                <!-- <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                        <div class="dropdown-menu m-0">
-                            <a href="price.php" class="dropdown-item">Pricing Plan</a>
-                            <a href="feature.php" class="dropdown-item">Our features</a>
-                            <a href="team.php" class="dropdown-item">Team Members</a>
-                            <a href="testimonial.php" class="dropdown-item">Testimonial</a>
-                            <a href="quote.php" class="dropdown-item">Free Quote</a>
-                        </div>
-                    </div> -->
-                <a href="blog.php" class="nav-item nav-link">Blog</a>
-                <a href="contact.php" class="nav-item nav-link">Contact</a>
+                <!-- <a href="<?= SYSTEM_PATH ?>blog.php" class="nav-item nav-link">Blog</a> -->
+                <a href="<?= SYSTEM_PATH ?>contact.php" class="nav-item nav-link">Contact</a>
             </div>
-            <butaton type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i
-                    class="fa fa-search"></i></butaton>
-            <!-- <a href="https://phpcodex.com/startup-company-website-template" class="btn btn-primary py-2 px-4 ms-3">Download Pro Version</a> -->
         </div>
     </nav>

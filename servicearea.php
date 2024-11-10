@@ -5,16 +5,30 @@ include 'secondarynavbar.php';
 ?>
 
 <?php
+ extract($_GET);
 if ($_SERVER ['REQUEST_METHOD'] == "GET") {
     extract($_GET);
     $db = dbConn();
-    $sql = "SELECT * FROM services WHERE ServiceID='$ServiceID'";
+     $sql = "SELECT * FROM practice_areas WHERE PracticeAreaId = '$PracticeAreaId' AND practiceAreaStatus = '1' ";
     $result = $db->query($sql);
    
     $rowService = $result->fetch_assoc();
-   $Description =  $rowService['Description'] ;
-   $LongerDescription = $rowService['LongerDescription'] ;
-    echo $ServiceID;
+
+     "<br>";
+     $LongerDescriptionEnglishOptionalStatus = $rowService['LongerDescriptionEnglishOptionalStatus'] ;
+     "<br>";
+    if ($LongerDescriptionEnglishOptionalStatus == 1){
+         $Description =  $rowService['HeadingName'] ;
+         $LongerDescription = $rowService['LongerDescriptionEnglish'] ;
+       "testing1";
+
+    }elseif ($LongerDescriptionEnglishOptionalStatus == 2) {
+         $Description =  $rowService['HeadingNameOptional'] ;
+         $LongerDescription = $rowService['LongerDescriptionEnglishOptional'] ;
+         "testing2";
+    }
+   
+     $PracticeAreaId;
 }
 ?>
 
@@ -55,11 +69,20 @@ if ($_SERVER ['REQUEST_METHOD'] == "GET") {
             <div class="row g-5">
                 <div class="col-lg-12">
                     <div class="section-title position-relative pb-3 mb-5">
-                        <h5 class="fw-bold text-primary text-uppercase">Legal Area</h5>
+                        <h5 class="fw-bold text-primary text-uppercase">Legal Area - <?= ucwords($Description) ?></h5>
 
-                        <h1 class="mb-0"><?=  ucwords($Description) ?></h1>
+                        <!-- <h1 class="mb-0"><?  ucwords($Description) ?></h1> -->
                     </div>
-                    <p class="mb-4"><?= $LongerDescription ?></p>
+                    <?php
+                    
+                    $sentences_withbreaks = preg_split('/(?<=[.!?])\s+/', $LongerDescription);
+$paragraphs = array_chunk($sentences_withbreaks, 5);
+
+foreach ($paragraphs as $paragraph) {
+    echo '<p class="mb-4" style="text-align: justify;">' . implode(' ', $paragraph) . '</p>';
+}
+                    ?>
+                    
                         <!-- sinhala -->
                         <?php
                          
@@ -92,7 +115,19 @@ if ($_SERVER ['REQUEST_METHOD'] == "GET") {
 
                           $sentences;
                         ?>
-                         <p class="mb-4"><?= $sentences; ?></p>
+
+                    <?php
+                    
+                    $sentences_withbreaks_sinhala = preg_split('/(?<=[.!?])\s+/', $sentences);
+                    $paragraphs = array_chunk($sentences_withbreaks_sinhala, 5);
+
+                    foreach ($paragraphs as $paragraph) {
+                        echo '<p class="mb-4" style="text-align: justify;">' . implode(' ', $paragraph) . '</p>';
+                    }
+                    ?>
+                         <!-- <p class="mb-4"><?= $sentences; ?></p> -->
+
+
                          <!-- tamil -->
                          <?php
                            $text= $LongerDescription;
@@ -124,7 +159,16 @@ if ($_SERVER ['REQUEST_METHOD'] == "GET") {
 
                           $sentences;
                         ?>
-                         <p class="mb-4"><?= $sentences; ?></p>
+                        <?php
+                    
+                    $sentences_withbreaks_Tamil = preg_split('/(?<=[.!?])\s+/', $sentences);
+                    $paragraphs = array_chunk($sentences_withbreaks_Tamil, 5);
+
+                    foreach ($paragraphs as $paragraph) {
+                        echo '<p class="mb-4" style="text-align: justify;">' . implode(' ', $paragraph) . '</p>';
+                    }
+                    ?>
+                         <!-- <p class="mb-4"><?= $sentences; ?></p> -->
                     <!-- <div class="row g-0 mb-3">
                         <div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
                             <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Award Winning</h5>
@@ -141,7 +185,7 @@ if ($_SERVER ['REQUEST_METHOD'] == "GET") {
                         </div>
                         <div class="ps-4">
                             <h5 class="mb-2">Call to ask any question</h5>
-                            <h4 class="text-primary mb-0">+012 345 6789</h4>
+                            <h4 class="text-primary mb-0">+94 77 599 0485</h4>
                         </div>
                     </div> -->
                     <!-- <a href="quote.html" class="btn btn-primary py-3 px-5 mt-3 wow zoomIn" data-wow-delay="0.9s">Request A Quote</a> -->
@@ -157,28 +201,7 @@ if ($_SERVER ['REQUEST_METHOD'] == "GET") {
     <!-- About End -->
 
 
-  
 
-
-    <!-- Vendor Start -->
-    <!-- <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container py-5 mb-5">
-            <div class="bg-white">
-                <div class="owl-carousel vendor-carousel">
-                    <img src="img/vendor-1.jpg" alt="">
-                    <img src="img/vendor-2.jpg" alt="">
-                    <img src="img/vendor-3.jpg" alt="">
-                    <img src="img/vendor-4.jpg" alt="">
-                    <img src="img/vendor-5.jpg" alt="">
-                    <img src="img/vendor-6.jpg" alt="">
-                    <img src="img/vendor-7.jpg" alt="">
-                    <img src="img/vendor-8.jpg" alt="">
-                    <img src="img/vendor-9.jpg" alt="">
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- Vendor End -->
     
 
  <?php 

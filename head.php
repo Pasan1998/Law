@@ -13,7 +13,7 @@ include 'function.php';
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="<?= SYSTEM_PATH ?>img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,7 +33,21 @@ include 'function.php';
 
     <!-- Template Stylesheet -->
     <link href="<?= SYSTEM_PATH ?>css/style.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.24/sweetalert2.all.js"></script>
+        <!-- jQuery for Counter-Up -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Counter-Up Plugin -->
+    <script src="https://cdn.jsdelivr.net/jquery.counterup/2.1.0/jquery.counterup.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    
+    <!-- Typed.js for typing effect -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    
+    <!-- anime.js for complex animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 </head>
 <body>
     <!-- Spinner Start -->
